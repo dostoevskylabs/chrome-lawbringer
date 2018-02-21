@@ -1,3 +1,7 @@
+/*
+ * Chrome Lawbringer - Content Script
+ * @author dostoevskylabs
+ */
 chrome.processes.onUpdated.addListener(function(processes) {
 	for ( tabId in processes ) {
 		switch ( processes[tabId].id ) {
