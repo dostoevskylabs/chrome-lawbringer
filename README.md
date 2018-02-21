@@ -1,8 +1,7 @@
 # chrome-lawbringer
 ![Lawbringer](https://i.imgur.com/KLD4C1u.png)
 
-proof-of-concept extension for google chrome that will monitor tab's CPU usage individually and terminate them if they exceed a threshhold. Also experimenting with pulling all JavaScript from webpages and collecting external links to javascript in an effort to detect malicious scripts and prevent them from running.
-
+proof-of-concept extension for google chrome that will monitor tab's CPU usage individually and terminate them if they exceed a threshhold. Also experimenting with overloading native JavaScript functions to impose a permission scheme.
 
 *only works on dev build currently*
 
@@ -12,7 +11,7 @@ proof-of-concept extension for google chrome that will monitor tab's CPU usage i
 #### An Example of pulling all scripts inline/external from a page that we can then run against a service for detection.
 ![Example 2](https://i.imgur.com/uOlKBq3.png)
 
-#### An Example of permission requests for WebSocket's and XHR requests
+#### An Example of permission requests for WebSocket's and XMLHTTP Requests
 ![Example 3](https://i.imgur.com/6XKqEB7.png)
 ![Example 3](https://i.imgur.com/6kawftb.png)
 ![Example 3](https://i.imgur.com/ppEmcWw.png)
