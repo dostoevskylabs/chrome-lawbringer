@@ -14,7 +14,7 @@ proof-of-concept extension for google chrome that will monitor tab's CPU usage i
 
 #### An Example of permission requests for WebSocket's and XHR requests
 ![Example 3](https://i.imgur.com/6XKqEB7.png)
-![Example 3]https://i.imgur.com/6kawftb.png)
-![Example 3]https://i.imgur.com/ppEmcWw.png)
-![Example 3]https://i.imgur.com/z6Abzti.png)
-![Example 3]https://i.imgur.com/UqQz1Gc.png)
+![Example 3](https://i.imgur.com/6kawftb.png)
+![Example 3](https://i.imgur.com/ppEmcWw.png)
+![Example 3](https://i.imgur.com/z6Abzti.png)
+![Example 3](https://i.imgur.com/UqQz1Gc.png)
