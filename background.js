@@ -14,7 +14,7 @@ chrome.processes.onUpdated.addListener(function(processes) {
 					// template for data to log to the extensions console
 					let template =  `
 					Terminated '${tabId}' due to exceeded resource usage.
-					Title: ${processes[tabId].tasks[0].title}
+					${processes[tabId].tasks[0].title}
 					CPU: ${processes[tabId].cpu}
 					`;
 					
