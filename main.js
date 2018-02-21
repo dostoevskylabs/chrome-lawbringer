@@ -36,7 +36,10 @@ console.log("Chrome Lawbringer extension loaded.");
 */
 // We'll be overwriting these methods before a website loads
 // This will allow us to sort of intercept their calls, and decide if we want 
-// to allow them
+// to allow them. The interesting part about this approach
+// as opposed to scanning the entire script is that this will discover attempts
+// to connect to a C&C even though the code is heavily obfuscated
+// obviously a long way to go.
 function init(){
 	// intercept websockets
 	let previousObject = WebSocket;
