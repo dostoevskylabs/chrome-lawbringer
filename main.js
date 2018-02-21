@@ -53,7 +53,7 @@ function init(){
 		}
 	};
 
-	// intercept xhr requests
+	// intercept xhr
 	let previousPrototype = XMLHttpRequest.prototype.open;
 	XMLHttpRequest.prototype.open = function(...params){
 		console.log(`[${window.location.hostname}] requestPermission:${params[0]} to '${params[1]}'`);
