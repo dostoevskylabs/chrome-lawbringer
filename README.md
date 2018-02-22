@@ -7,6 +7,12 @@ Keep in mind this is just a PoC - obviously you're not going to sit there and hi
 
 *only works on dev build currently*
 
+#### TODO
+- Implement modular permissions schema so each idividual permission is granted to an individual domain and can also be revoked that way you can completely whitelist a domain and not run any of these techniques on it, or pick and choose what runs.
+- Implement a custom console tab where this information logs to and allows for you to query the extension and control it.
+- Implement a Notification system for this information to alert you that also allows for you to interact with it (currently using prompts and that's gross)
+- Implement Settings to allow for redefining the default permission schemes and also levels to which you want it to work (ie: terminating a tab, or simply killing a script, or even just warning you)
+
 #### An Example of using CPU usage to block cryptominers based on excessive cpu usage.
 ![Example 1](https://i.imgur.com/VwpbG2E.png)
 
