@@ -5,7 +5,7 @@ proof-of-concept extension for google chrome that will monitor tab's CPU usage i
 
 Keep in mind this is just a PoC - obviously you're not going to sit there and hit y every request. However, I'm just showing you how it can work to intercept and reject instances of resource requests within javascript. I have a million ideas of how I want this to be end-game. However, at the end of the day I would rather see the browser implement these features natively.
 
-*only works on dev build currently*
+*Note: This is not meant to be used and is currently still in very early development as such it only works on dev build of chrome*
 
 #### TODO
 - Implement modular permissions schema so each idividual permission is granted to an individual domain and can also be revoked that way you can completely whitelist a domain and not run any of these techniques on it, or pick and choose what runs.
