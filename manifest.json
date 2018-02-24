@@ -2,7 +2,7 @@
   "manifest_version":2,
   "name": "chrome lawbringer",
   "version": "1.0",
-  "description": "proof-of-concept extension for google chrome that will monitor tab's CPU usage individually and terminate them if they exceed a threshhold. Also experimenting with overloading native JavaScript functions to impose a permission scheme.",
+  "description": "proof-of-concept extension for google chrome that will monitor tab's CPU usage individually and terminate them if they exceed a threshhold. Also experimenting with overloading native JavaScript objects to impose a permission scheme.",
   "background": {
     "scripts": ["background.js"]
   },
