@@ -1,6 +1,6 @@
 {
   "manifest_version":2,
-  "name": "chrome lawbringer",
+  "name": "chrome-lawbringer",
   "version": "1.0",
   "description": "proof-of-concept extension for google chrome that will monitor tab's CPU usage individually and terminate them if they exceed a threshhold. Also experimenting with overloading native JavaScript objects to impose a permission scheme.",
   "background": {
@@ -13,8 +13,20 @@
       "run_at": "document_start"
     }
   ],
+  "browser_action": {
+    "default_icon": "icons/test-48.png",
+    "default_popup": "popup.html"
+  },
   "permissions": [
+    "https://www.virustotal.com/",
+    "webRequest",
+    "webRequestBlocking",  
     "processes",
-    "tabs"
-  ]
+    "tabs",
+    "storage",
+    "notifications"
+  ],
+  "icons": {
+    "48": "icons/test-48.png"
+  }
 }
