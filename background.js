@@ -4,7 +4,7 @@
  * @author dostoevskylabs
  */
 let instance 		= undefined;
-let currentHostname = undefined;
+let currentHostname 	= undefined;
 let currentReport 	= undefined;
 let whitelist 		= [];
 let blacklist 		= [];
