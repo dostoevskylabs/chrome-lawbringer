@@ -35,7 +35,7 @@ instance.onMessage.addListener( function( data ) {
 			loaded(data.whitelist);
 		break;
 
-		case "message":
+		case "permission":
 			sendClientEvent(data.message);
 		break;
 
@@ -105,15 +105,7 @@ function loaded (array) {
 		var result              = undefined;
 
 		function getHost ( url ) {
-			let hostname = undefined;
-			if ( url.indexOf("://") > -1 ) {
-				hostname = url.split('/')[2];
-			} else {
-				hostname = url.split('/')[0];
-			}
-			hostname = hostname.split(':')[0];
-			hostname = hostname.split('?')[0];
-			return hostname;
+			return ( url.indexOf("://") > -1 ? url.split("/")[2] : url.split("/")[0] ).split(":")[0].split("?")[0];
 		}	
 
 		function pause ( seconds ) {
