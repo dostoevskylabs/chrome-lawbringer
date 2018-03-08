@@ -10,14 +10,11 @@ Keep in mind this is just a PoC - I'm just showing you how it can work to interc
 #### TODO
 - A lot
 
-#### An Example loading coinhive, spits out into the console, alerting you of the risk and adds it to a blacklist
-![Example 1](https://i.imgur.com/67cytVe.png)
+#### An Example loading coinhive, allows you to allow/reject and view a report of the findings
+![Example 1](https://i.imgur.com/FfNKmoN.png)
 
-#### And a dialogue incase your console is closed
-![Example 2](https://i.imgur.com/Bb7A0Wo.png)
+#### Viewing a report from VT, now you can make the choice to allow or reject
+![Example 2](https://i.imgur.com/oSAxmOT.png)
 
 #### An Example of loading a page that's been blacklisted
-![Example 3](https://i.imgur.com/H8r1m2F.png)
-
-#### An Example of loading a clean site, showing it gets added to a whitelist so it won't get run against VT next time
-![Example 4](https://i.imgur.com/wbjMvBG.png)
+![Example 3](https://i.imgur.com/F1xT5a1.png)
