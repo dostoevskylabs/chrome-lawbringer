@@ -4,10 +4,42 @@
  * @author dostoevskylabs
  */
 let instance 		= undefined;
-let currentHostname 	= undefined;
+let currentHostname = undefined;
 let currentReport 	= undefined;
 let whitelist 		= [];
 let blacklist 		= [];
+
+/**
+ * Load saved whitelist from sync storgae
+ */
+chrome.storage.sync.get("whitelist", function ( data ) {
+	if ( data.whitelist === undefined ) {
+		chrome.storage.sync.set({ "whitelist" : [] }, function(){
+
+		});
+		return true;
+	}
+
+	console.log("Whitelist Loaded", whitelist);
+	whitelist = data.whitelist;
+	return true;
+});
+
+/**
+ * Load saved blacklist from sync storgae
+ */
+chrome.storage.sync.get("blacklist", function ( data ) {
+	if ( data.blacklist === undefined ) {
+		chrome.storage.sync.set({ "blacklist" : [] }, function(){
+
+		});		
+		return true;
+	}
+
+	console.log("Blacklist Loaded", blacklist);
+	blacklist = data.blacklist;	
+	return true;
+});
 
 /**
  * Send data to content script
@@ -35,11 +67,13 @@ function getHost ( url ) {
  * @param {string} item 
  */
 function addToWhitelist( item ) {
-	if ( !whitelist.includes( item ) ) {
-		whitelist.push( item );
-		return true;
+	if ( whitelist.includes( item ) ) {
+		return false;
 	}
-	return false;
+
+	whitelist.push(item);
+	chrome.storage.sync.set({ "whitelist" : whitelist }, function(){});
+	return true;
 }
 
 /**
@@ -48,11 +82,12 @@ function addToWhitelist( item ) {
  * @param {string} item 
  */
 function addToBlacklist ( item ) {
-	if ( !blacklist.includes( item ) ) {
-		blacklist.push( item );
-		return true;
-	}
-	return false;
+	if ( blacklist.includes( item ) ) {
+		return false;
+	}	
+	blacklist.push(item);
+	chrome.storage.sync.set({ "blacklist" : blacklist }, function(){});
+	return true;
 }
 
 /**
@@ -137,13 +172,10 @@ function createNotification ( type, title, message, items = undefined ) {
  * @param {string} hostname 
  */
 function checkStatus ( hostname ) {
-	if ( whitelist.includes( hostname ) ) {
-		// hostname is whitelisted, send permission true to content script
+	if ( whitelist.includes(hostname) ) {
 		sendContentEvent({ type:"permission", message:true	});
 		return true;
-	} else if ( blacklist.includes( hostname ) ) {
-		// hostname is blacklisted
-
+	} else if ( blacklist.includes(hostname) ) {
 		// alert user
 		createNotification(
 			"alertBlocked",
@@ -158,8 +190,6 @@ function checkStatus ( hostname ) {
 		killTab();
 		return true;
 	}
-
-	// not in whitelist or blacklist, return false
 	return false;
 }
 
@@ -177,7 +207,7 @@ function parseVtResults ( data ) {
 	// add to whitelist without user interaction
 	if ( data.attributes.reputation >= 0 && data.attributes.last_analysis_stats.malicious === 0	) {
 		addToWhitelist( getHost( data.attributes.url) );
-		sendContentEvent({ type:"message", message:true	});
+		sendContentEvent({ type:"permission", message:true	});
 		return true;
 	}
 
@@ -253,7 +283,10 @@ function checkVtStats ( data ) {
 function checkVtUrl ( url ) {
 	// store hostname of URL
 	let hostname = getHost( url );
-	if ( checkStatus( hostname ) ) return true; // handle whitelist/blacklist
+	if ( checkStatus( hostname ) ) {	
+		return true; // handle whitelist/blacklist
+	}
+
 	/**
 	 * Store reference of current hostname, this is hacky
 	 * However I can't find a way to pass this data through to the notification
@@ -322,11 +355,12 @@ chrome.notifications.onButtonClicked.addListener( function ( notificationId, but
 				if ( buttonId === 0 ) {
 					// allow
 					addToWhitelist(currentHostname);
-					checkStatus(currentHostname);
+					return true;
 				} else if ( buttonId === 1 ) {
 					// reject
 					addToBlacklist(currentHostname);
-					checkStatus(currentHostname);				
+					killTab();
+					return true;				
 				}
 			break;
 	
